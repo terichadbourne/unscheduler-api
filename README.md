@@ -4,11 +4,11 @@ The Unscheduler is an app for managing schedules for unconferences, inspired by 
 
 It's built in two parts:
 * A front-end app, built with JavaScript, jQuery, HTML, and CSS
-   * [Repo](repolink.com)
+   * [GitHub repo](repolink.com)
    * [Live site](ghpagessite.com), deployed on GitHub Pages
 * A back-end API, built with Ruby on Rails
-   * [Repo](repolink.com)
-   * [Live site](herokusite.com), deployed on Heroku
+   * [GitHub repo](https://github.com/terichadbourne/unscheduler-api)
+   * [Live site](https://unscheduler-api.herokuapp.com/), deployed on Heroku
 
 ## Remaining Documentation Requirements
 * TODO Create 2 Github repos (one for your front-end and one for your back-end)
