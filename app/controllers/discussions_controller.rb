@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DiscussionsController < OpenReadController
   before_action :set_discussion, only: %i[update destroy]
 
