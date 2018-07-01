@@ -17,7 +17,7 @@ class DiscussionsController < OpenReadController
 
   # POST /discussions
   def create
-    @discussion = current_user.discussions.build(discussion_params)
+    @discussion = current_user.discussions_proposed.build(discussion_params)
 
     if @discussion.save
       render json: @discussion, status: :created, location: @discussion
@@ -43,13 +43,14 @@ class DiscussionsController < OpenReadController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_discussion
-      @discussion = current_user.discussions.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def discussion_params
-      params.require(:discussion).permit(:title, :winner, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_discussion
+    @discussion = current_user.discussions_proposed.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def discussion_params
+    params.require(:discussion).permit(:title, :winner, :user_id)
+  end
 end

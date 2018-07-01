@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :update, :destroy]
 
