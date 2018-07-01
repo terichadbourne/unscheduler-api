@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 class DiscussionSerializer < ActiveModel::Serializer
   attributes :id, :title, :winner, :editable
-  has_one :user
+  has_one :discussion_proposer
+  has_many :users, through: :votes
 
   def editable
-    scope == object.user
+    scope == object.discussion_proposer
   end
 end
