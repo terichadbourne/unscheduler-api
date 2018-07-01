@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class VotesController < ApplicationController
-  before_action :set_vote, only: %i[show update destroy]
+class VotesController < OpenReadController
+  before_action :set_vote, only: %i[update destroy]
 
   # GET /votes
   def index
@@ -12,12 +12,12 @@ class VotesController < ApplicationController
 
   # GET /votes/1
   def show
-    render json: @vote
+    render json: Vote.find(params[:id])
   end
 
   # POST /votes
   def create
-    @vote = Vote.new(vote_params)
+    @vote = current_user.votes.build(vote_params)
 
     if @vote.save
       render json: @vote, status: :created, location: @vote
@@ -38,13 +38,15 @@ class VotesController < ApplicationController
   # DELETE /votes/1
   def destroy
     @vote.destroy
+
+    head :no_content
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_vote
-    @vote = Vote.find(params[:id])
+    @vote = current_user.votes.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
