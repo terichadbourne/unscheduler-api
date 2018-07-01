@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DiscussionSerializer < ActiveModel::Serializer
   attributes :id, :title, :winner, :editable
   has_one :discussion_proposer
