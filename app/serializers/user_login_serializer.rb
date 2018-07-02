@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class UserLoginSerializer < ActiveModel::Serializer
-  attributes :id, :email, :token
+  attributes :id, :email, :token, :votes
+  has_many :discussions_proposed
+  has_many :discussions, through: :votes
 
   def token
     Rails.application.message_verifier(:signed_token).generate(object.token)
