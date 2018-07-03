@@ -6,6 +6,6 @@ curl --include --request POST "http://localhost:4741/discussions/" \
   --data '{
     "discussion": {
       "title": "'"${TITLE}"'",
-      "winner": "'"${WINNER}"'"
+      "winner": '${WINNER}'
     }
   }'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserLoginSerializer < ActiveModel::Serializer
-  attributes :id, :email, :token, :votes
+  attributes :id, :email, :admin, :token, :votes
   has_many :discussions_proposed
   has_many :discussions, through: :votes
 
