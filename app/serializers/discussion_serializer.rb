@@ -1,7 +1,18 @@
 # frozen_string_literal: true
 
 class DiscussionSerializer < ActiveModel::Serializer
-  attributes :id, :title, :winner, :editable, :vote_counts, :votes, :current_user_session_votes, :current_user_total_votes, :current_user_votes_remaining, :can_upvote, :can_downvote, :admin?
+  attributes :id,
+             :title,
+             :winner,
+             :editable,
+             :vote_counts,
+             :votes,
+             :current_user_session_votes,
+             :current_user_total_votes,
+             :current_user_votes_remaining,
+             :can_upvote,
+             :can_downvote,
+             :admin?
   has_one :discussion_proposer
   has_many :users, through: :votes
 
