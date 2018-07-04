@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :discussions_proposed,
            class_name: 'Discussion',
            inverse_of: 'discussion_proposer'
+  has_many :events
   validates :admin, inclusion: { in: [true, false] }
   has_many :votes, dependent: :destroy
   has_many :discussions, through: :votes
