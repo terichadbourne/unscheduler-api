@@ -10,7 +10,7 @@ class EventsController < OpenReadController
 
   # GET /events/1
   def show
-    render json: Discussion.find(params[:id])
+    render json: Event.find(params[:id])
   end
 
   # POST /events
