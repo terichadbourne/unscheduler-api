@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class VotesController < OpenReadController
-  before_action :set_vote, only: %i[update destroy]
+  before_action :set_vote, only: %i[destroy]
 
   # GET /votes
   def index
@@ -21,15 +21,6 @@ class VotesController < OpenReadController
 
     if @vote.save
       render json: @vote, status: :created, location: @vote
-    else
-      render json: @vote.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /votes/1
-  def update
-    if @vote.update(vote_params)
-      render json: @vote
     else
       render json: @vote.errors, status: :unprocessable_entity
     end
