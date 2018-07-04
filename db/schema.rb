@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180703135200) do
+ActiveRecord::Schema.define(version: 20180704005347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,21 @@ ActiveRecord::Schema.define(version: 20180703135200) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "event_id"
+    t.index ["event_id"], name: "index_discussions_on_event_id"
     t.index ["user_id"], name: "index_discussions_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.boolean "proposals_open", default: true
+    t.boolean "voting_open", default: false
+    t.boolean "schedule_finalized", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "max_votes", default: 5
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "examples", force: :cascade do |t|
@@ -52,7 +66,9 @@ ActiveRecord::Schema.define(version: 20180703135200) do
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
+  add_foreign_key "discussions", "events"
   add_foreign_key "discussions", "users"
+  add_foreign_key "events", "users"
   add_foreign_key "examples", "users"
   add_foreign_key "votes", "discussions"
   add_foreign_key "votes", "users"
