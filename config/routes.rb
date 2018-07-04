@@ -2,11 +2,12 @@
 
 Rails.application.routes.draw do
 
+  resources :events, only: %i[index show update]
   # RESTful routes
   resources :examples, except: %i[new edit]
   resources :users, only: %i[index show update]
   resources :discussions, except: %i[new edit]
-  resources :votes, except: %i[new edit]
+  resources :votes, except: %i[new edit update]
 
   # Custom routes
   post '/sign-up' => 'users#signup'

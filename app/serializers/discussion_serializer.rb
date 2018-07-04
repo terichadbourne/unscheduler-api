@@ -9,8 +9,6 @@ class DiscussionSerializer < ActiveModel::Serializer
              :votes,
              :current_user_session_votes,
              :current_user_total_votes,
-             :current_user_votes_remaining,
-             :can_upvote,
              :can_downvote,
              :admin?
   has_one :discussion_proposer
@@ -51,21 +49,9 @@ class DiscussionSerializer < ActiveModel::Serializer
     end
   end
 
-  def current_user_votes_remaining
-    if scope
-      5 - current_user_total_votes
-    end
-  end
-
   def can_downvote
     if scope
       current_user_session_votes >= 1
-    end
-  end
-
-  def can_upvote
-    if scope
-      current_user_votes_remaining.positive?
     end
   end
 
